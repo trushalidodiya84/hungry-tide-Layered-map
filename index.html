@@ -20,7 +20,7 @@ width:100%;
 
 <body>
 
-<h2>Migration and Ecology in The Hungry Tide</h2>
+<h2>Visualising Narrative Space in The Hungry Tide</h2>
 
 <div id="map"></div>
 
@@ -34,6 +34,41 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
 attribution:'© OpenStreetMap'
 }).addTo(map);
 
+// Create Layer Groups
+var humanLayer = L.layerGroup();
+var dolphinLayer = L.layerGroup();
+var memoryLayer = L.layerGroup();
+
+
+// HUMAN MIGRATION
+L.marker([22.05, 88.95])
+.bindPopup("<b>Morichjhapi</b><br>Refugee settlement representing human migration.")
+.addTo(humanLayer);
+
+
+// DOLPHIN ECOLOGY
+L.circle([21.95, 89.10],{
+radius:2000,
+color:"blue"
+})
+.bindPopup("<b>Irrawaddy Dolphin Zone</b><br>Piya’s research area.")
+.addTo(dolphinLayer);
+
+
+// MEMORY / NARRATIVE SITE
+L.marker([22.05, 88.95])
+.bindPopup("<b>Morichjhapi (Nirmal's Notebook)</b><br>Historical memory recorded in Nirmal’s writings.")
+.addTo(memoryLayer);
+
+
+// Layer Control
+var overlays = {
+"Human Migration": humanLayer,
+"Dolphin Ecology": dolphinLayer,
+"Memory Sites": memoryLayer
+};
+
+L.control.layers(null, overlays).addTo(map);
 </script>
 
 </body>
