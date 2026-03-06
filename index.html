@@ -93,11 +93,25 @@ L.marker([22.05, 88.95], {icon: refugeeIcon})
 .addTo(humanLayer);
 
 
-// PIYA ARRIVES IN KOLKATA
-
-L.marker([22.5726, 88.3639], {icon: piyaIcon})
-.bindPopup("<b>Piya Roy</b><br>Arrives in Kolkata from Seattle to begin cetacean research.")
+// Piya in Seattle
+L.marker([47.6062, -122.3321], {icon: piyaIcon})
+.bindPopup("<b>Piyali Roy</b><br>Cetologist based in Seattle who travels to India to study Irrawaddy dolphins in the Sundarbans.")
 .addTo(humanLayer);
+
+
+// Piya arrives in Kolkata
+L.marker([22.5726, 88.3639], {icon: piyaIcon})
+.bindPopup("<b>Piya Roy – Kolkata</b><br>Piya arrives in Kolkata to begin her research on the cetacean population of the Sundarbans.")
+.addTo(humanLayer);
+
+// Route: Seattle to Kolkata
+var piyaRoute = L.polyline([
+    [47.6062, -122.3321],
+    [22.5726, 88.3639]
+], {
+    color: "red",
+    weight: 3
+}).addTo(humanLayer);
 
 
 // DOLPHIN ECOLOGY
