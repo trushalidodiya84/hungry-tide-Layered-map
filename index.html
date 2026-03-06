@@ -9,6 +9,13 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- Leaflet Awesome Markers -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.awesome-markers/2.0.4/leaflet.awesome-markers.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.awesome-markers/2.0.4/leaflet.awesome-markers.js"></script>
+
 <style>
 #map{
 height:600px;
@@ -28,6 +35,7 @@ width:100%;
 
 <script>
 
+// Create map
 var map = L.map('map').setView([22.0, 88.8], 8);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
@@ -35,33 +43,79 @@ attribution:'© OpenStreetMap'
 }).addTo(map);
 
 // Create Layer Groups
-var humanLayer = L.layerGroup();
+var humanLayer = L.layerGroup().addTo(map);
 var dolphinLayer = L.layerGroup();
 var memoryLayer = L.layerGroup();
 
 
+// ICONS
+
+// Piya icon
+var piyaIcon = L.AwesomeMarkers.icon({
+icon: 'flask',
+markerColor: 'red',
+prefix: 'fa'
+});
+
+// Kanai icon
+var kanaiIcon = L.AwesomeMarkers.icon({
+icon: 'user',
+markerColor: 'red',
+prefix: 'fa'
+});
+
+// Refugee icon
+var refugeeIcon = L.AwesomeMarkers.icon({
+icon: 'users',
+markerColor: 'red',
+prefix: 'fa'
+});
+
+// Dolphin icon
+var dolphinIcon = L.AwesomeMarkers.icon({
+icon: 'water',
+markerColor: 'blue',
+prefix: 'fa'
+});
+
+// Memory icon
+var memoryIcon = L.AwesomeMarkers.icon({
+icon: 'book',
+markerColor: 'green',
+prefix: 'fa'
+});
+
+
 // HUMAN MIGRATION
-L.marker([22.05, 88.95])
+
+L.marker([22.05, 88.95], {icon: refugeeIcon})
 .bindPopup("<b>Morichjhapi</b><br>Refugee settlement representing human migration.")
 .addTo(humanLayer);
 
 
+// PIYA ARRIVES IN KOLKATA
+
+L.marker([22.5726, 88.3639], {icon: piyaIcon})
+.bindPopup("<b>Piya Roy</b><br>Arrives in Kolkata from Seattle to begin cetacean research.")
+.addTo(humanLayer);
+
+
 // DOLPHIN ECOLOGY
-L.circle([21.95, 89.10],{
-radius:2000,
-color:"blue"
-})
+
+L.marker([21.95, 89.10], {icon: dolphinIcon})
 .bindPopup("<b>Irrawaddy Dolphin Zone</b><br>Piya’s research area.")
 .addTo(dolphinLayer);
 
 
-// MEMORY / NARRATIVE SITE
-L.marker([22.05, 88.95])
+// MEMORY SITE
+
+L.marker([22.05, 88.95], {icon: memoryIcon})
 .bindPopup("<b>Morichjhapi (Nirmal's Notebook)</b><br>Historical memory recorded in Nirmal’s writings.")
 .addTo(memoryLayer);
 
 
 // Layer Control
+
 var overlays = {
 "Human Migration": humanLayer,
 "Dolphin Ecology": dolphinLayer,
@@ -69,6 +123,7 @@ var overlays = {
 };
 
 L.control.layers(null, overlays).addTo(map);
+
 </script>
 
 </body>
